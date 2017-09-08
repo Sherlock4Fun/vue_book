@@ -1,0 +1,59 @@
+<template>
+  <div class="listContainer">
+    <Row>
+      <Col span="5" offset="1" v-for="(book,index) in books" :key="index" class="text">
+      <Card>
+        <p slot="title">{{ book.bookName }}</p>
+        <img class="bookimg" :src="book.imgUrl">
+        <p>售价:{{ book.price }}</p>
+        <Icon type="clse-round"></Icon>
+        <Button type="error" @click="deleteBook(book.id)">删除</Button>
+      </Card>
+      </Col>
+    </Row>
+  </div>
+</template>
+
+<script>
+  import {mapGetters} from 'vuex';
+  export default {
+    computed: {
+      ...mapGetters({
+        books: 'books'
+      })
+    },
+    methods: {
+      deleteBook(id){
+        this.$store.dispatch('deleteBook', id)
+      }
+    }
+  }
+</script>
+
+<style>
+  .bookimg {
+    height: 200px;
+  }
+
+  .listContainer {
+    padding-top: 30px;
+  }
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
